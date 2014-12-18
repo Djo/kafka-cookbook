@@ -1,0 +1,41 @@
+# Licensed to the Apache Software Foundation (ASF) under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The ASF licenses this file to You under the Apache License, Version 2.0
+# (the "License"); you may not use this file except in compliance with
+# the License.  You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+# see kafka.consumer.ConsumerConfig for more details
+
+# Zookeeper connection string
+# comma separated host:port pairs, each corresponding to a zk
+# server. e.g. "127.0.0.1:3000,127.0.0.1:3001,127.0.0.1:3002"
+<%= render 'partials/option.erb', :variables => {:key => 'zookeeper.connect', :value => @options[:zookeeper_connect] } -%>
+
+# timeout in ms for connecting to zookeeper
+<%= render 'partials/option.erb', :variables => {:key => 'zookeeper.connection.timeout.ms', :value => @options[:zookeeper_connection_timeout_ms]} -%>
+
+# consumer group id
+<%= render 'partials/option.erb', :variables => {:key => 'group.id', :value => @options[:group_id]} -%>
+
+# consumer timeout
+<%= render 'partials/option.erb', :variables => {:key => 'consumer.timeout.ms', :value => @options[:consumer_timeout_ms]} -%>
+
+# Mirroring is often used in cross-DC scenarios, and there are a few configuration options that you may want to tune
+# to help deal with inter-DC communication latencies and performance bottlenecks on your specific hardware. In general,
+# you should set a high value for the socket buffer size on the mirror-maker's consumer configuration (socket.buffersize)
+# and the source cluster's broker configuration (socket.send.buffer).
+# Also, the mirror-maker consumer's fetch size (fetch.size) should be higher than the consumer's socket buffer size.
+
+# socket buffer size
+<%= render 'partials/option.erb', :variables => {:key => 'socket.buffersize', :value => @options[:socket_buffersize]} -%>
+
+# consumer fetch size
+<%= render 'partials/option.erb', :variables => {:key => 'fetch.size', :value => @options[:fetch_size]} -%>

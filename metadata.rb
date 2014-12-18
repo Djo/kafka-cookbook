@@ -9,6 +9,7 @@ long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          '0.7.0'
 
 recipe 'kafka::default', 'Downloads, compiles and installs Kafka from binary releases'
+recipe 'kafka::mirror_maker', 'Sets up a standalone MirrorMaker instance to mirror a source Kafka cluster into a target (mirror) cluster'
 
 suggests 'java', '~> 1.22'
 

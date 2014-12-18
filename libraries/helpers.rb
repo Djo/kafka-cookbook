@@ -125,3 +125,16 @@ def broker_attribute?(*parts)
   r = parts.reduce(broker) { |b, p| b.fetch(p, b) }
   r.fetch(key, nil)
 end
+
+def mirror_maker_args
+  args = "kafka.tools.MirrorMaker"
+  node.mirror_maker.consumers.each do |consumer, _|
+    path = ::File.join(node.mirror_maker.config_dir, consumer)
+    args << " --consumer.config #{path}"
+  end
+  path = ::File.join(node.mirror_maker.config_dir, node.mirror_maker.producer.config_file)
+  args << " --producer.config #{path}"
+  node.mirror_maker.parameters.each { |p, v| args << " --#{p} #{v}" }
+
+  args
+end
